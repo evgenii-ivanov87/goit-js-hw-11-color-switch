@@ -9,15 +9,29 @@ const colors = [
 
 const refs = {
   bodystyles: document.querySelector('body'),
-  bottunRef: document.querySelector('.btn')
+  bottunStartRef: document.querySelector('[data-action="start"]'),
+  bottunStopRef: document.querySelector('[data-action="start"]')
+  
 }
 
-refs.bottunRef.addEventListener('click',buttonActiv)
+refs.bottunStartRef.addEventListener('click',buttonActiv)
 
-console.log(refs.bodystyles)
-console.dir(refs.bottunRef)
+console.dir(refs.bodystyles)
+console.dir(refs.bottunStartRef)
+console.dir(refs.bottunStopRef)
 
-function buttonActiv() { refs.bodystyles.classList.add('active') }
+function buttonNewColor() {
+  const index = randomIntegerFromInterval(0, colors.length-1)
+  const newColor = colors[index]
+  console.log(newColor)
+  refs.bodystyles.style.backgroundColor = newColor
+}
+function buttonActiv() {
+  setInterval(buttonNewColor, 2000)
+  
+}
+
 const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
+
