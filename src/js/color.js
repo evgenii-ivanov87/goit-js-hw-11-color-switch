@@ -8,34 +8,30 @@ const colors = [
 ];
 
 const refs = {
-  bodyEl : document.querySelector('body'),
-  startBtn: document.querySelector('[data-action="start"]'),
-  stopBtn: document.querySelector('[data-action="stop"]')
-  }
+  bodystyles: document.querySelector('body'),
+  bottunStartRef: document.querySelector('[data-action="start"]'),
+  bottunStopRef: document.querySelector('[data-action="start"]')
+  
+}
 
-let intervalId = '';
-refs.stopBtn.disabled = true;
+refs.bottunStartRef.addEventListener('click',buttonActiv)
 
-refs.startBtn.addEventListener('click', onStartBtnClick);
-refs.stopBtn.addEventListener('click', onStopBtnClick);
+console.dir(refs.bodystyles)
+console.dir(refs.bottunStartRef)
+console.dir(refs.bottunStopRef)
 
-const switcher = () => {
-  refs.bodyEl.style.backgroundColor =
-    colors[randomIntegerFromInterval(0, colors.length - 1)];
-};
+function buttonNewColor() {
+  const index = randomIntegerFromInterval(0, colors.length-1)
+  const newColor = colors[index]
+  console.log(newColor)
+  refs.bodystyles.style.backgroundColor = newColor
+}
+function buttonActiv() {
+  setInterval(buttonNewColor, 2000)
+  
+}
 
 const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-function onStartBtnClick() {
-  refs.startBtn.disabled = true;
-  refs.stopBtn.disabled = false;
-  intervalId = setInterval(switcher, 1000);
-}
-
-function onStopBtnClick() {
-  refs.startBtn.disabled = false;
-  refs.stopBtn.disabled = true;
-  clearInterval(intervalId);
-}
