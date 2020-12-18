@@ -48,7 +48,7 @@ body {
   color: white;
   transform: translateY(-7px);
 }
-.btn:active {
+.btn:disabled {
   background: #3f11e9;
   box-shadow: 0 15px 20px rgba(28, 4, 136, 0.4);
   color: white;
